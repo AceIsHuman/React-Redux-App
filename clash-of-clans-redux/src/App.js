@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { fetchPlayer } from './actions';
 import './App.css';
 
 function App() {
@@ -9,4 +11,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  playerData: state.playerData,
+  isLoading: state.isLoading,
+  status: state.status
+})
+
+export default connect(mapStateToProps, { fetchPlayer })(App);
