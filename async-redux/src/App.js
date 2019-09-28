@@ -2,20 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchHolidays } from './actions';
 import './App.css';
+import { Card } from 'semantic-ui-react';
+
+import HolidayCard from './components/HolidayCard';
 
 const App = props => {
   const { fetchHolidays, holidays } = props;
   return (
     <div className="App">
-      <h1>Redux Project</h1>
+      <h1>US Holidays 2018</h1>
       <button onClick={fetchHolidays}>fetchHolidays</button>
-      {holidays.map(holiday=> (
-        <>
-          <h3>{holiday.name}</h3>
-          <p>Date: {holiday.date}</p>
-          <p>Observed: {holiday.observed}</p>
-        </>
-      ))}
+      <Card.Group centered>
+        {holidays.map(holiday=> (
+          <HolidayCard holiday={holiday} />
+        ))}
+      </Card.Group>
     </div>
   );
 }
